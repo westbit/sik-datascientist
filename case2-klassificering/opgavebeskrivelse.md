@@ -4,6 +4,7 @@ Sikkerhedsstyrelsen ejer [husweb](http://husweb.dk) som er et system der huser a
 ## Opgave
 Vi vil gerne vide om der er signifikant forskel på tiderne hos de forskellige inspektører og fagområder.
 -   Kan vi klassificere inspektørerne efter de to fagområder?
+
 Vi kan definere færdiggørelsestiden som tiden fra besigtigelse til gyldighed.
 -   Er der signifikant forskel på færdiggørelsestiden på de to fagområder?
 -   Er det inspektøren eller fagområdet som har størst betydning for variationen i færdiggørelsestid?

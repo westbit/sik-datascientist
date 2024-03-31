@@ -12,7 +12,7 @@ def main():
     for n in range(len(pyudv.cases)):
         res = pyudv.cases[n].beregn()
         print(
-            f"case nummer {n+1} er beregnet for {pyudv.kaldenavn}.\n"
+            f"case nummer {n + 1} er beregnet for {pyudv.kaldenavn}.\n"
             f"{pyudv.stedord.grundform.title()} får resultatet:"
         )
         print(res)

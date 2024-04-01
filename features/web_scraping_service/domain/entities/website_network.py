@@ -20,6 +20,17 @@ class WebsiteNetwork:
         network_dict = {"nodes": nodes, "edges": edges}
         return json.dumps(network_dict, indent=4)
 
+    def from_json(self, data):
+        self.websites.clear()  # Clear existing data
+        for node in data["nodes"]:
+            website = Website(url=node["id"], links=[])
+            self.websites.append({"url": website.url, "links": website.links})
+        for edge in data["edges"]:
+            for website in self.websites:
+                if website["url"] == edge["source"]:
+                    website["links"].append(edge["target"])
+                    break
+
     def save(self, file_name="website_network.json"):
         json_data = self.to_json()
         root_dir = os.path.abspath(
@@ -28,3 +39,12 @@ class WebsiteNetwork:
         file_path = os.path.join(root_dir, file_name)
         with open(file_path, "w") as file:
             file.write(json_data)
+
+    def load(self, file_name="website_network.json"):
+        root_dir = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")
+        )
+        file_path = os.path.join(root_dir, file_name)
+        with open(file_path, "r") as file:
+            data = json.load(file)
+        self.from_json(data)

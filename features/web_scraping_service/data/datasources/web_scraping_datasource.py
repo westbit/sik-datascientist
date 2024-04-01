@@ -32,12 +32,8 @@ class WebScrapingDatasource:
                     links.append(full_url)
 
             return WebsiteModel(url, links)
-        except RequestException as e:
-            print(
-                f"Fejl ved hentning af siden {url}: {e}"
-            )  # Log fejlen i stedet for at kaste en exception
-            return WebsiteModel(
-                url, []
-            )  # Returner en tom WebsiteModel for at fortsætte processen
+        except RequestException:
+            # Returner en tom WebsiteModel for at fortsætte processen
+            return WebsiteModel(url, [])
         except Exception as e:
             raise Exception(f"Generel fejl: {e}")

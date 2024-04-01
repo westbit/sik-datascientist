@@ -11,7 +11,7 @@ class PerformDepthLimitedScraping:
         self.scrape_website = scrape_website
         self.queue_handler = queue_handler
 
-    def beregn(self, url: str, depth: int = 2) -> WebsiteNetwork:
+    def execute(self, url: str, depth: int = 1) -> WebsiteNetwork:
         website_network = WebsiteNetwork()
         self.queue_handler.add_url(url, 0)
 
@@ -21,7 +21,7 @@ class PerformDepthLimitedScraping:
                 break
 
             try:
-                result = self.scrape_website.beregn(current_url)
+                result = self.scrape_website.execute(current_url)
                 website_network.add_website(result)
                 if current_depth < depth:
                     for link in result.links:

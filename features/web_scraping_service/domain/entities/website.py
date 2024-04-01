@@ -1,4 +1,4 @@
 class Website:
-    def __init__(self, url):
+    def __init__(self, url, links=[]):
         self.url = url
-        self.links = []
+        self.links = links

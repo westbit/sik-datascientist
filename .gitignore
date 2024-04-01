@@ -126,3 +126,7 @@ log/
 
 # SQL
 *.sql
+
+# JSON
+*.json
+

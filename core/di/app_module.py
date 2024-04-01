@@ -9,6 +9,9 @@ from features.web_scraping_service.data.datasources.web_scraping_datasource impo
 from features.web_scraping_service.data.repositories.web_scraping_repository_impl import (
     WebScrapingRepositoryImpl,
 )
+from features.web_scraping_service.domain.repositories.web_scraping_repository import (
+    WebScrapingRepository,
+)
 from features.web_scraping_service.domain.usecases.scrape_website import ScrapeWebsite
 
 
@@ -18,7 +21,7 @@ class AppModule(injector.Module):
             WebScrapingDatasource, to=WebScrapingDatasource, scope=injector.singleton
         )
         binder.bind(
-            WebScrapingRepositoryImpl,
+            WebScrapingRepository,  # type: ignore
             to=WebScrapingRepositoryImpl,
             scope=injector.singleton,
         )

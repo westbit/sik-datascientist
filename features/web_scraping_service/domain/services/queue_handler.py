@@ -10,9 +10,10 @@ class QueueHandler:
         self.visited = set()
 
     def add_url(self, url, depth):
-        if url not in self.visited:
-            self.queue.append((url, depth))
-            self.visited.add(url)
+        normalized_url = url.rstrip("/")
+        if normalized_url not in self.visited:
+            self.queue.append((normalized_url, depth))
+            self.visited.add(normalized_url)
 
     def get_next_url(self):
         if self.queue:

@@ -1,4 +1,5 @@
 import json
+import os
 
 from features.web_scraping_service.domain.entities.website import Website
 
@@ -18,3 +19,12 @@ class WebsiteNetwork:
                 edges.append({"source": website["url"], "target": link})
         network_dict = {"nodes": nodes, "edges": edges}
         return json.dumps(network_dict, indent=4)
+
+    def save(self, file_name="website_network.json"):
+        json_data = self.to_json()
+        root_dir = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "..", "..", "..")
+        )
+        file_path = os.path.join(root_dir, file_name)
+        with open(file_path, "w") as file:
+            file.write(json_data)

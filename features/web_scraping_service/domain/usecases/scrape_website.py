@@ -11,5 +11,5 @@ class ScrapeWebsite:
     def __init__(self, repository: WebScrapingRepository):
         self.repository = repository
 
-    def execute(self, url: str) -> Website:
+    def beregn(self, url: str) -> Website:
         return self.repository.scrape_website(url)

@@ -1,0 +1,7 @@
+[run]
+source = 
+    lib/
+omit =
+    *tests*
+    *__init__.py
+    *_test.py

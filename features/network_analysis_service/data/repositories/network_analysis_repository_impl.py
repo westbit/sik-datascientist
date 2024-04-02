@@ -22,3 +22,6 @@ class NetworkAnalysisRepositoryImpl(NetworkAnalysisRepository):
 
     def analyze_network(self, website_network: WebsiteNetwork) -> NetworkCluster:
         return self.datasource.analyze_network(website_network)
+
+    def identify_cluster(self, network_cluster: NetworkCluster) -> None:
+        self.datasource.identify_cluster(network_cluster)

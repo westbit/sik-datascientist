@@ -14,3 +14,7 @@ class NetworkAnalysisRepository(ABC):
     @abstractmethod
     def analyze_network(self, website_network: WebsiteNetwork) -> NetworkCluster:
         pass
+
+    @abstractmethod
+    def identify_cluster(self, network_cluster: NetworkCluster) -> None:
+        pass

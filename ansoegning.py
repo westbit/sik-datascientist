@@ -6,6 +6,9 @@ from injector import Injector
 from features.network_analysis_service.domain.usecases.analyze_network import (
     AnalyzeNetwork,
 )
+from features.network_analysis_service.domain.usecases.identify_cluster import (
+    IdentifyCluster,
+)
 from features.web_scraping_service.domain.usecases.perform_depth_limited_scraping import (
     PerformDepthLimitedScraping,
 )
@@ -20,11 +23,12 @@ class PyUdvikler:
         self.kaldenavn = "Erik Valbjørn Jensen"
         self.stedord = Stedord("Erik", "Eriks")
         scraping_instance = inj.get(PerformDepthLimitedScraping)
-        analyze_network_instance = inj.get(AnalyzeNetwork)
+        identify_cluster_instance = inj.get(IdentifyCluster)
+        inj.get(AnalyzeNetwork)
         combined_func = partial(
             combined_usecase,
             scraping_instance,
-            analyze_network_instance,
+            identify_cluster_instance,
             "https://sik.dk",
             1,
         )
@@ -55,9 +59,8 @@ class CaseWrapper:
         return result
 
 
-def combined_usecase(scraping_instance, analyze_instance, url, depth):
+def combined_usecase(scraping_instance, identify_cluster_instance, url, depth):
     website_network = scraping_instance.execute(url, depth)
     print(PerformDepthLimitedScrapingPresenter.format_website_network(website_network))
     PerformDepthLimitedScrapingPresenter.save_website_network_to_file(website_network)
-    analysis_result = analyze_instance.execute()
-    return analysis_result
+    identify_cluster_instance.execute()

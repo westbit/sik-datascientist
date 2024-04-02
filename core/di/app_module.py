@@ -1,5 +1,3 @@
-from logging.handlers import QueueHandler
-
 import injector
 from injector import Binder
 
@@ -15,6 +13,9 @@ from features.network_analysis_service.domain.repositories.network_analysis_repo
 from features.network_analysis_service.domain.usecases.analyze_network import (
     AnalyzeNetwork,
 )
+from features.network_analysis_service.domain.usecases.identify_cluster import (
+    IdentifyCluster,
+)
 from features.web_scraping_service.data.datasources.web_scraping_datasource import (
     WebScrapingDatasource,
 )
@@ -24,6 +25,7 @@ from features.web_scraping_service.data.repositories.web_scraping_repository_imp
 from features.web_scraping_service.domain.repositories.web_scraping_repository import (
     WebScrapingRepository,
 )
+from features.web_scraping_service.domain.services.queue_handler import QueueHandler
 from features.web_scraping_service.domain.usecases.scrape_website import ScrapeWebsite
 
 
@@ -53,3 +55,4 @@ class AppModule(injector.Module):
             scope=injector.singleton,
         )
         binder.bind(AnalyzeNetwork, to=AnalyzeNetwork, scope=injector.singleton)
+        binder.bind(IdentifyCluster, to=IdentifyCluster, scope=injector.singleton)
